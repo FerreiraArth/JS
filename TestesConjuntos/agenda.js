@@ -4,14 +4,16 @@ function listarContatos(contatos) {
   }
 }
 
-function buscarContato(contatos, nome) {
-    for (let i = 0; i < contatos.length; i++) {
-        if (contatos[i].nome === nome) {
-          console.log(`Contato encontrado: Nome: ${contatos[i].nome}, Telefone: ${contatos[i].telefone}`);
-          return;
-        } 
+function buscarContato(nome) {
+  for (let i = 0; i < amigos.length; i++) {
+    if (amigos[i].nome === nome) {
+      console.log(
+        `Contato encontrado: Nome: ${amigos[i].nome}, Telefone: ${amigos[i].telefone}`,
+      );
+      return;
     }
-    console.log(`Contato com o nome "${nome}" não encontrado.`);
+  }
+  console.log(`Contato com o nome "${nome}" não encontrado.`);
 }
 
 const amigos = [
@@ -20,10 +22,13 @@ const amigos = [
     telefone: "99999-9999",
   },
   {
-    nome: "jose",
+    nome: "Maria",
     telefone: "98888-8888",
   },
 ];
+
+listarContatos(amigos);
+console.log("================================");
 
 amigos.push({
   nome: "João",
@@ -31,11 +36,10 @@ amigos.push({
 });
 
 listarContatos(amigos);
-console.log("================================");
 
 // amigos.pop(); // Remove o último contato adicionado
 // listarContatos(amigos);
 
 console.log("================================");
 
-buscarContato(amigos,"Maria");
+buscarContato("Maria");
