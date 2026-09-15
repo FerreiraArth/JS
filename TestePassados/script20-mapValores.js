@@ -5,4 +5,13 @@ const produtos = [
   { nome: "Headset", preco: 200 },
 ];
 
-produ
+const produtosComDesconto = produtos.map((produto) => {
+    return {
+        nome: produto.nome,
+        preco: produto.preco,
+        precoComDesconto: produto.preco * 0.9,
+        categoria: produto.preco >= 500 ? "Premium" : produto.preco >= 100 ? "Intermediário" : "Básico",
+    };
+});
+
+console.table(produtosComDesconto);
