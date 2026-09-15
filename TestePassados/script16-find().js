@@ -4,13 +4,15 @@ function listarContatos(contatos) {
   }
 }
 
-const busca = amigos.find(contato => contato.nome === "Maria");
-
-if (!busca) {
-  console.log(`Contato com o nome "Maria" não encontrado.`);
-} else {
-  console.log(`Contato encontrado: Nome: ${busca.nome}, Telefone: ${busca.telefone}`);
+function buscarContato(contatos, pessoa) {
+    const busca = contatos.find(contato => contato.nome === pessoa);
+    if (!busca) {
+    console.log(`Contato com o nome "${pessoa}" não encontrado.`);
+  } else {
+    console.log(`Contato encontrado: Nome: ${busca.nome}, Telefone: ${busca.telefone}`);
+  }
 }
+
 
 const amigos = [
   {
@@ -23,10 +25,23 @@ const amigos = [
   },
 ];
 
+const familia = [
+  {
+    nome: "Raniely",
+    telefone: "96666-6666",
+  },
+];
+
 amigos.push({
   nome: "Maria",
   telefone: "97777-7777",
 });
 
+
 listarContatos(amigos);
 console.log("================================");
+
+buscarContato(amigos, "Maria");
+buscarContato(amigos, "Jose");
+buscarContato(amigos, "Arthur");
+buscarContato(familia, "Raniely");
