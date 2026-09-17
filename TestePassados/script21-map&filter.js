@@ -8,7 +8,14 @@ const produtos = [
 
 function promo(produtos, precoMinimo) {
   const produtosComFiltro = produtos.filter(
-    (produto) => produto.preco >= precoMinimo,
+    (produto) => produto.preco >= precoMinimo
+  );
+  return produtosComFiltro;
+}
+
+function promo(produtos, desconto) {
+  const produtosComFiltro = produtos.filter(
+    (produto) => produto.preco >= desconto,
   );
   return produtosComFiltro;
 }
