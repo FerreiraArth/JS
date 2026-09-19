@@ -6,9 +6,13 @@ const pedidos = [
 ];
 
 function organizarPedidos(pedidos) {
-  return pedidos.sort((a, b) => a.valor - b.valor);
+  return [...pedidos].sort((a, b) => a.valor - b.valor);
 }
 
-organizarPedidos(pedidos);
+const copiaPedidos = [...pedidos].sort((a, b) => a.valor - b.valor);
 
+const pedidosOrganizados = organizarPedidos(pedidos);
+
+console.table(pedidosOrganizados);
+console.table(copiaPedidos);
 console.table(pedidos);
