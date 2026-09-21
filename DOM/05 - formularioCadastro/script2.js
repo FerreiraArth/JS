@@ -4,34 +4,7 @@ const nome = document.querySelector("#nome");
 const idade = document.querySelector("#idade");
 const lista = document.querySelector("#listaCadastros");
 
-let cadastros = [];
-
-
-
-function renderizarCadastro() {
-    lista.innerHTML = "";  //LIMPA A LISTA
-
-    cadastros.forEach((cadastro) => {
-        const item = document.createElement("li");
-        const botaoRemover = document.createElement("button")
-
-        item.textContent = `${cadastro.nome} - ${cadastro.idade}`;
-        botaoRemover.textContent = "Remover"
-
-        lista.appendChild(item);
-        item.appendChild(botaoRemover);
-
-        botaoRemover.addEventListener("click", () => {
-            const atualizada = cadastros.filter((cadastroDaLista) => {
-                return cadastroDaLista !== cadastro;
-            })
-
-            cadastros = atualizada
-            renderizarCadastro()
-        });
-
-    })
-}
+const cadastros = [];
 
 function validarCadastro() {
   const nomeTratado = nome.value.trim();
@@ -54,7 +27,9 @@ function validarCadastro() {
 
     cadastros.push(cadastro);
     
-    renderizarCadastro();
+    const item = document.createElement("li");
+    item.textContent = `${cadastro.nome} - ${cadastro.idade}`;
+    lista.appendChild(item)
 
     nome.value = "";
     idade.value = "";
@@ -63,3 +38,4 @@ function validarCadastro() {
 }
 
 cadastrar.addEventListener("click", validarCadastro);
+
