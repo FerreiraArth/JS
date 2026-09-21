@@ -10,8 +10,11 @@ aumentar.addEventListener("click", () => {
     elementoContador.textContent = contador
 })
 diminuir.addEventListener("click", () => {
-    contador -= 1
-    elementoContador.textContent = contador
+
+    if (contador > 0) {
+        contador -= 1
+        elementoContador.textContent = contador
+    }
 })
 zerar.addEventListener("click", () => {
     contador = 0
