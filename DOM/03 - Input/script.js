@@ -3,5 +3,10 @@ const nome = document.querySelector("#nome");
 const mostrar = document.querySelector("#mostrar");
 
 mostrar.addEventListener("click", () => {
-    titulo.textContent = `Ola ${nome.value}!`
+    if (nome.value === ""){
+        titulo.textContent = `Por favor, digite seu nome!`
+    }else {
+        titulo.textContent = `Ola ${nome.value}!`
+        nome.value = "";
+    }
 })
