@@ -1,19 +1,7 @@
-const aumentar = document.querySelector("#aumentar");
-const diminuir = document.querySelector("#diminuir");
-const elementoContador = document.querySelector("#contador");
-const zerar = document.querySelector("#zerar");
+const titulo = document.querySelector("#titulo");
+const nome = document.querySelector("#nome");
+const mostrar = document.querySelector("#mostrar");
 
-let contador = 0
-
-aumentar.addEventListener("click", () => {
-    contador += 1
-    elementoContador.textContent = contador
-})
-diminuir.addEventListener("click", () => {
-    contador -= 1
-    elementoContador.textContent = contador
-})
-zerar.addEventListener("click", () => {
-    contador = 0
-    elementoContador.textContent = contador
+mostrar.addEventListener("click", () => {
+    titulo.textContent = `Ola ${nome.value}!`
 })
