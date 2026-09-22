@@ -6,20 +6,25 @@ const lista = document.querySelector("#listaCadastros");
 
 let cadastros = [];
 
-
-
 function renderizarCadastro() {
     lista.innerHTML = "";  //LIMPA A LISTA
 
     cadastros.forEach((cadastro) => {
         const item = document.createElement("li");
-        const botaoRemover = document.createElement("button")
+        const botaoRemover = document.createElement("button");
+        const selecionar = document.createElement("button");
 
         item.textContent = `${cadastro.nome} - ${cadastro.idade}`;
-        botaoRemover.textContent = "Remover"
+        botaoRemover.textContent = "Remover";
+        selecionar.textContent = "Selecionar";
 
         lista.appendChild(item);
         item.appendChild(botaoRemover);
+        item.appendChild(selecionar);
+
+        selecionar.addEventListener("click", () => {
+          item.classList.toggle("selecionado");
+        })
 
         botaoRemover.addEventListener("click", () => {
             const atualizada = cadastros.filter((cadastroDaLista) => {
