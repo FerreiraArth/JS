@@ -21,12 +21,14 @@ function renderizarCadastro() {
         lista.appendChild(item);
         item.appendChild(botaoRemover);
         item.appendChild(selecionar);
-
-        selecionar.addEventListener("click", () => {
+        
+        selecionar.addEventListener("click", (evento) => {
+          evento.stopPropagation();
           item.classList.toggle("selecionado");
         })
-
-        botaoRemover.addEventListener("click", () => {
+        
+        botaoRemover.addEventListener("click", (evento) => {
+          evento.stopPropagation();
             const atualizada = cadastros.filter((cadastroDaLista) => {
                 return cadastroDaLista !== cadastro;
             })
@@ -34,6 +36,10 @@ function renderizarCadastro() {
             cadastros = atualizada
             renderizarCadastro()
         });
+        
+        item.addEventListener("click", () => {
+          console.log("cliquei no LI")
+        })
 
     })
 }
