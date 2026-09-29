@@ -15,24 +15,15 @@ function renderizarCadastro() {
         const selecionar = document.createElement("button");
 
         item.textContent = `${cadastro.nome} - ${cadastro.idade}`;
+
+        item.dataset.nome = cadastro.nome;
+
         botaoRemover.textContent = "Remover";
         selecionar.textContent = "Selecionar";
 
         lista.appendChild(item);
         item.appendChild(botaoRemover);
         item.appendChild(selecionar);
-        
-        botaoRemover.addEventListener("click", (evento) => {
-          // evento.stopPropagation();
-            const atualizada = cadastros.filter((cadastroDaLista) => {
-                return cadastroDaLista !== cadastro;
-            })
-
-            cadastros = atualizada
-            renderizarCadastro()
-        });
-        
-
     })
 }
 
@@ -43,11 +34,23 @@ lista.addEventListener("click", (evento) => {
 
   if(evento.target.tagName === "LI") {
     console.log("Você clicou no cadastro");
+
   } else if (evento.target.tagName === "BUTTON") {
     console.log(evento.target.textContent);
 
     if (evento.target.textContent === "Remover"){
-      console.log("Remover Clicado");
+    const item = evento.target.parentElement;
+    const nomeCadastro = item.dataset.nome;
+    
+    const atualizada = cadastros.filter((cadastro) => {
+      return cadastro.nome !== nomeCadastro;
+    });
+
+    cadastros = atualizada
+    renderizarCadastro()
+    
+
+    console.log(nomeCadastro)
 
     } else if (evento.target.textContent === "Selecionar") {
       const item = evento.target.parentElement;

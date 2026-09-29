@@ -1,4 +1,5 @@
 .selecionado {
     font-weight: bold;
     background-color: #ff0000;
+    transition: ease-in-out .5s;
 }
