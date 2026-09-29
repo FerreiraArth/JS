@@ -22,13 +22,8 @@ function renderizarCadastro() {
         item.appendChild(botaoRemover);
         item.appendChild(selecionar);
         
-        selecionar.addEventListener("click", (evento) => {
-          evento.stopPropagation();
-          item.classList.toggle("selecionado");
-        })
-        
         botaoRemover.addEventListener("click", (evento) => {
-          evento.stopPropagation();
+          // evento.stopPropagation();
             const atualizada = cadastros.filter((cadastroDaLista) => {
                 return cadastroDaLista !== cadastro;
             })
@@ -37,12 +32,33 @@ function renderizarCadastro() {
             renderizarCadastro()
         });
         
-        item.addEventListener("click", () => {
-          console.log("cliquei no LI")
-        })
 
     })
 }
+
+lista.addEventListener("click", (evento) => {
+
+  console.log("Target: ", evento.target);
+  console.log("Current: ",  evento.currentTarget);
+
+  if(evento.target.tagName === "LI") {
+    console.log("Você clicou no cadastro");
+  } else if (evento.target.tagName === "BUTTON") {
+    console.log(evento.target.textContent);
+
+    if (evento.target.textContent === "Remover"){
+      console.log("Remover Clicado");
+
+    } else if (evento.target.textContent === "Selecionar") {
+      const item = evento.target.parentElement;
+
+      item.classList.toggle("selecionado")
+
+      console.log("Foi o botão de SELECIONAR");
+    }
+  }
+
+})
 
 function validarCadastro() {
   const nomeTratado = nome.value.trim();
