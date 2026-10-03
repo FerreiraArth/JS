@@ -3,20 +3,35 @@ let tarefas = [];
 const tarefa = document.querySelector("#tarefa");
 const adicionar = document.querySelector("#adicionar");
 const listaTarefas = document.querySelector("#listaTarefas");
+const contador = document.querySelector("#contador");
+
+function atualizarContador() {
+  const totalTarefas = tarefas.length;
+  const tarefasConcluidas = tarefas.filter((tarefa) => 
+    tarefa.concluida).length;
+  
+  contador.textContent = `Total: ${totalTarefas} | Concluídas: ${tarefasConcluidas}`;
+}
 
 function listarTarefas() {
     listaTarefas.innerHTML = "";
 
-    tarefas.forEach((nomeTarefa) => {
+    tarefas.forEach((tarefaAtual) => {
         const item = document.createElement("li");
         const checkbox = document.createElement("input");
         const label = document.createElement("label");
         const remover = document.createElement("button");
 
         checkbox.type = "checkbox";
-        label.textContent = nomeTarefa;
+
+        if (tarefaAtual.concluida) {
+            checkbox.checked = true;
+            item.classList.add("concluida");
+        }
+
+        label.textContent = tarefaAtual.nome;
         remover.textContent = "Remover";
-        item.dataset.tarefa = nomeTarefa;
+        item.dataset.tarefa = tarefaAtual.nome;
         
         item.appendChild(checkbox);
         item.appendChild(label);
@@ -27,8 +42,13 @@ function listarTarefas() {
           const itemTarefa = event.target.parentElement;
           
           if (event.target.checked) {
+            tarefaAtual.concluida = true;
+            
             itemTarefa.classList.add("concluida");
+
           } else {
+            tarefaAtual.concluida = false;
+      
             itemTarefa.classList.remove("concluida");
           }
         });
@@ -41,11 +61,15 @@ adicionar.addEventListener("click", () => {
   const valorTarefa = tarefa.value.trim();
   
   if (valorTarefa) {
-    tarefas.push(valorTarefa);
+    tarefas.push({
+      nome: valorTarefa,
+      concluida: false
+    });
     
     tarefa.value = "";
     
     listarTarefas();
+    atualizarContador();
   }
 });
 
@@ -56,11 +80,12 @@ listaTarefas.addEventListener("click", (evento) => {
         const nomeTarefa = item.dataset.tarefa;
 
         const atualizadas = tarefas.filter((tarefa) => {
-          return tarefa !== nomeTarefa;
+          return tarefa.nome !== nomeTarefa;
         });
 
         tarefas = atualizadas;
 
         listarTarefas();
+        atualizarContador();
     }
 });
