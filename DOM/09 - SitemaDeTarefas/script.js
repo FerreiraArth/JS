@@ -12,8 +12,7 @@ const concluidas = document.querySelector("#concluidas");
 
 function atualizarContador() {
   const totalTarefas = tarefas.length;
-  const tarefasConcluidas = tarefas.filter((tarefa) => 
-    tarefa.concluida).length;
+  const tarefasConcluidas = tarefas.filter((tarefa) => tarefa.concluida).length;
 
   contador.textContent = `Total: ${totalTarefas} | Concluídas: ${tarefasConcluidas}`;
 }
