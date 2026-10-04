@@ -9,18 +9,26 @@
 <body>
 
   <h1>Minhas tarefas</h1>
-  <p id="contador"></p>
-
-  <input id="tarefa" type="text" placeholder="Digite uma tarefa">
-
+  
+  
+  <input id="tarefa" type="text" placeholder="Digite uma tarefa"></input>
+  
   <button id="adicionar">Adicionar</button>
-
+  
+  <div id="filtros">
+    <button id="todos">TODOS</button>
+    <button id="pendentes">PENDENTES</button>
+    <button id="concluidas">CONCLUÍDAS</button>
+  </div>
+  
   <ul id="listaTarefas"></ul>
-
+  
   <!-- <ul id="listaTarefas">
     <li class="concluida" ><input type="checkbox" > <label >Exemplo de tarefa</label></li>
   </ul> -->
   
+  <p id="contador"></p>
+
   <script src="script.js"></script>
 </body>
 </html>
