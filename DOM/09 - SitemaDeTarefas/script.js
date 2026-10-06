@@ -1,4 +1,5 @@
 let tarefas = [];
+let filtroAtual = "TODOS";
 
 const tarefa = document.querySelector("#tarefa");
 const adicionar = document.querySelector("#adicionar");
@@ -62,9 +63,21 @@ function listarTarefas(lista) {
     });
 }
 
+function obterTarefasFiltradas(filtro) {
+  if (filtro === "TODOS") {
+    return tarefas;
+  } else if (filtro === "PENDENTES") {
+    return tarefas.filter((tarefa) => !tarefa.concluida);
+  } else if (filtro === "CONCLUÍDAS") {
+    return tarefas.filter((tarefa) => tarefa.concluida);
+  }
+}
+
 filtro.addEventListener("click", (event) => {
 
   let filtroSelecionado = event.target.textContent;
+
+  filtroAtual = filtroSelecionado;
 
   if (filtroSelecionado === "TODOS") {
     listarTarefas(tarefas);
@@ -91,10 +104,12 @@ adicionar.addEventListener("click", () => {
       nome: valorTarefa,
       concluida: false
     });
+
+    const tarefasFiltradas = obterTarefasFiltradas(filtroAtual);
     
     tarefa.value = "";
     
-    listarTarefas(tarefas);
+    listarTarefas(tarefasFiltradas);
     atualizarContador();
   }
 });
@@ -108,10 +123,12 @@ listaTarefas.addEventListener("click", (evento) => {
         const atualizadas = tarefas.filter((tarefa) => {
           return tarefa.nome !== nomeTarefa;
         });
-
+        
         tarefas = atualizadas;
 
-        listarTarefas(tarefas);
+        const tarefasFiltradas = obterTarefasFiltradas(filtroAtual);
+
+        listarTarefas(tarefasFiltradas);
         atualizarContador();
     }
 });
