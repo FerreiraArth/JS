@@ -18,9 +18,16 @@ function recuperar(){
 
   if (tarefasSalvas === null) {
     tarefas = [];
+    proximoId = 1;
   } else {
     tarefas = JSON.parse(tarefasSalvas);
-}
+    
+    const maiorId = tarefas.reduce((maior, tarefaAtual) => {
+      return tarefaAtual.id > maior ? tarefaAtual.id : maior;
+    }, 0);
+  
+    proximoId = maiorId + 1;
+  }
 }
 
 function renderizar() {
