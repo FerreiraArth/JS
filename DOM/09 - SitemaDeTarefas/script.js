@@ -9,6 +9,20 @@ const contador = document.querySelector("#contador");
 
 const filtro = document.querySelector("#filtros");
 
+function salvarTarefas() {
+  localStorage.setItem("tarefas", JSON.stringify(tarefas));
+}
+
+function recuperar(){
+  const tarefasSalvas = localStorage.getItem("tarefas");
+
+  if (tarefasSalvas === null) {
+    tarefas = [];
+  } else {
+    tarefas = JSON.parse(tarefasSalvas);
+}
+}
+
 function renderizar() {
   const tarefasFiltradas = obterTarefasFiltradas(filtroAtual);
   listarTarefas(tarefasFiltradas);
@@ -50,6 +64,7 @@ function listarTarefas(lista) {
     checkbox.addEventListener("change", (event) => {
       tarefaAtual.concluida = event.target.checked;
       
+      salvarTarefas();
       renderizar();
     });
   });
@@ -69,7 +84,7 @@ filtro.addEventListener("click", (event) => {
   const filtroSelecionado = event.target.textContent;
 
   filtroAtual = filtroSelecionado;
-
+  
   renderizar();
 });
 
@@ -87,6 +102,7 @@ adicionar.addEventListener("click", () => {
 
     tarefa.value = "";
 
+    salvarTarefas();
     renderizar();
   }
 });
@@ -102,8 +118,10 @@ listaTarefas.addEventListener("click", (evento) => {
 
     tarefas = atualizadas;
 
+    salvarTarefas();
     renderizar();
   }
 });
 
+recuperar();
 renderizar();
